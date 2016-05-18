@@ -11,8 +11,8 @@ trait ActionMakeTrip{
         $post=Yii::$app->request->post();
         if($post==[]) {
             $trip = new Trips();
-            $couriers = Couriers::find()->asArray()->all();
-            $regions = Regions::find()->asArray()->all();
+            $couriers = Couriers::find()->all();
+            $regions = Regions::find()->all();
             return $this->render('maketrip', ['trip' => $trip, 'couriers' => $couriers, 'regions' => $regions]);
         }else{
             $trip=new Trips();
