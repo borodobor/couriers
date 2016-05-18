@@ -11,7 +11,8 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
-    use ActionMakeTrip;
+    use ActionMakeTrip,
+        ActionValidTrip;
     public function behaviors()
     {
         return [

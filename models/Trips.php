@@ -32,6 +32,7 @@ class Trips extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['region', 'courier','date_departure', 'date_arrival'],'required'],
             [['region', 'courier'], 'integer'],
             [['date_departure', 'date_arrival'], 'safe'],
             [['region'], 'exist', 'skipOnError' => true, 'targetClass' => Regions::className(), 'targetAttribute' => ['region' => 'id']],
