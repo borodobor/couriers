@@ -13,7 +13,12 @@ foreach ($regions as $value){
 foreach ($couriers as $v){
     $courier[$v->id]=$v->name;
 }
-
+if($success==1){
+    echo '<div style="color: green">Запись о поездке успешно сохранена</div>';
+}
+elseif($success==0){
+    echo '<div style="color: red">Произошла ошибка</div>';
+}
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
@@ -44,15 +49,26 @@ foreach ($couriers as $v){
         $.post('/site/validtrip',{'courier':$cour,'region':$reg,'datedep':$datedep},
             function(data){
                 $result=JSON.parse(data);
-                $('#arrive').html('Дата прибытия из поездки: '+$result[0]);
-                console.log($result);
+                if($result[1]==1){
+                    $('#arrive').html('<span style="color: red">У выбранного курьера на этот период назначена другая поездка. Выберите другого курьера или измените дату</span>');
+                    $('.btn-primary').hide();
+                }
+                else {
+                    $('#arrive').html('Дата прибытия из поездки: ' + $result[0]);
+                    $('.btn-primary').show();
+                }
             });
-//        console.log($datedep);
     }
-    $('#trips-courier').on('click',function () {
+
+    $('#trips-courier').change(function(){
         validateTrip();
-    })
-    $(document).on('ready',function (){
-//        validateTrip();
-    })
+    });
+
+    $('#trips-region').change(function(){
+        validateTrip();
+    });
+
+    $('.well-sm').click(function(){
+        validateTrip();
+    });
 </script>
