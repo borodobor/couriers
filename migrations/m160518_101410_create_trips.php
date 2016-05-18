@@ -22,8 +22,8 @@ class m160518_101410_create_trips extends Migration
 
         $this->createIndex('courier', 'trips', 'courier');
         $this->createIndex('region', 'trips', 'region');
-        $this->createIndex('departure', 'trips', 'date-departure');
-        $this->createIndex('arrival', 'trips', 'date-arrival');
+        $this->createIndex('departure', 'trips', 'date_departure');
+        $this->createIndex('arrival', 'trips', 'date_arrival');
         $this->addForeignKey('couriers', 'trips', 'courier', 'couriers', 'id');
         $this->addForeignKey('regions', 'trips', 'region', 'regions', 'id');
     }
