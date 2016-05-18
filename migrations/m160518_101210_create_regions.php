@@ -14,8 +14,20 @@ class m160518_101210_create_regions extends Migration
     {
         $this->createTable('regions', [
             'id' => $this->primaryKey(),
-            'name'=> $this->string(),
-            'time'=>$this->integer()
+            'name'=> $this->string()->notNull(),
+            'time'=>$this->integer()->notNull()
+        ]);
+        $this->batchInsert('regions', ['name','time'],[
+                                                        ['Санкт-Петербург', 3],
+                                                        ['Уфа',4],
+                                                        ['Нижний Новгород',3],
+                                                        ['Владимир',1],
+                                                        ['Кострома',2],
+                                                        ['Екатеринбург',5],
+                                                        ['Ковров',1],
+                                                        ['Воронеж',3],
+                                                        ['Самара', 4],
+                                                        ['Астрахань',5]
         ]);
     }
 

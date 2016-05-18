@@ -1,5 +1,6 @@
 <?php
 use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Html;
 
 $region='';
 $courier='';
@@ -13,9 +14,9 @@ foreach ($couriers as $k=>$v){
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
-<?= $form->field($trip, 'region', ['class'=>'region'])->dropDownList([$region])->label('Регион') ?>
-<?= $form->field($trip, 'courier', ['class'=>'courier'])->dropDownList([$courier])->label('Курьер') ?>
-<?= $form->field($trip, 'date_departure', ['class'=>'departure'])->label('Дата выезда из Москвы') ?>
+<?= $form->field($trip, 'region', ['options'=>['id' => 'region']])->dropDownList([$region])->label('Регион') ?>
+<?= $form->field($trip, 'courier', ['options'=>['id' => 'courier']])->dropDownList([$courier])->label('Курьер') ?>
+<?= $form->field($trip, 'date_departure', ['options'=>['id' => 'departure']])->label('Дата выезда из Москвы') ?>
 <div id="arrive"></div>
 <div class="form-group">
     <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
@@ -23,7 +24,7 @@ foreach ($couriers as $k=>$v){
 <?php ActiveForm::end();?>
 
 <script>
-    $('select').change(function(){
+    $('#region').change(function(){
 
     })
 </script>

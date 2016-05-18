@@ -1,9 +1,9 @@
 <?php
 namespace app\controllers;
 
-use app\common\models\Couriers;
-use app\common\models\Regions;
-use app\common\models\Trips;
+use app\models\Couriers;
+use app\models\Regions;
+use app\models\Trips;
 use yii;
 
 trait ActionMakeTrip{

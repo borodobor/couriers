@@ -1,8 +1,8 @@
 <?php
 
-namespace app\common\models;
+namespace app\models;
 
-use Yii;
+use yii;
 
 /**
  * This is the model class for table "trips".
