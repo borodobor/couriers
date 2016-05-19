@@ -5,7 +5,7 @@ use dosamigos\datepicker\DateRangePicker;
 $this->title = 'График поездок';
 
 if($data==[]){
-
+    echo '<div style="font-size: 24px"><a class="gener" href="/site/generator">База пуста, для того чтобы заполнить ее, нажмите сюда</a></div>';
 }
 else {
     ?>
@@ -15,7 +15,9 @@ else {
         google.charts.load("current", {packages: ["timeline"]});
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
-
+            var options = {
+                'language': 'ru'
+            };
             var container = document.getElementById('timeline');
             var chart = new google.visualization.Timeline(container);
             var dataTable = new google.visualization.DataTable();
@@ -55,3 +57,4 @@ else {
     </div>
     <?php
 }
+

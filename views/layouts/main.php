@@ -37,7 +37,6 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Заполнить базу поездками', 'url' => ['/site/generator']],
             ['label' => 'График поездок', 'url' => ['/site/index']],
             ['label' => 'Создать поездку', 'url' => ['/site/maketrip']],
         ],
@@ -59,9 +58,15 @@ AppAsset::register($this);
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
+    <div class="overlay" style="display: none; font-size:24px;color: #0000aa;top:0; position: fixed; width: 100%; height: 100%;text-align: center;padding-top: 30%;background-color: grey; opacity: 0.9;">База заполняется, пожалуйста подождите</div>
 </footer>
 
 <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
+<script>
+    $(document).on('click','.gener',function () {
+        $('.overlay').show();
+    })
+</script>

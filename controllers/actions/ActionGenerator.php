@@ -31,7 +31,7 @@ trait ActionGenerator
         $couriers=Couriers::find()->asArray()->all();
         $regions=Regions::find()->asArray()->all();
         // заполняем по очереди для каждого курьера
-        foreach ($couriers as $key=>$value){
+        foreach ($couriers as $value){
             while (strtotime($date_last)<strtotime($date_end)){
                 // добавляем случайный промежуток между поездками, выходные/отсутствие необходимости поездки/прочее
                 $holydays=rand(1,5);

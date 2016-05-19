@@ -40,13 +40,18 @@ trait ActionIndex
             $cids[]=$val['id'];
             $cnames[]=$val['name'];
         }
+        $cids=array_reverse($cids);
+        $ids=array_reverse($ids);
+        $names=array_reverse($names);
+        $cnames=array_reverse($cnames);
         // формируем массив для отображения графика
         $result=[];
+        $count=1;
         foreach ($trips as $k=>$v){
             $name=$v['courier'];
-            $name=trim(str_replace($cids, $cnames,$name),0);
+            $name=str_replace($cids, $cnames,$name,$count);
             $region=$v['region'];
-            $region=trim(str_replace($ids, $names, $region),0);
+            $region=str_replace($ids, $names, $region);
             $dated=date('Y, n, j',strtotime($v['date_departure']));
             $datear=date('Y, n, j',strtotime($v['date_arrival']));
             $result[]="['$name', '$region', new Date($dated), new Date($datear)],";
