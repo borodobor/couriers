@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use app\controllers\actions\ActionMakeChart;
+use app\controllers\actions\ActionMakeTrip;
+use app\controllers\actions\ActionValidTrip;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -12,6 +15,7 @@ use app\models\ContactForm;
 class SiteController extends Controller
 {
     use ActionMakeTrip,
+        ActionMakeChart,
         ActionValidTrip;
     public function behaviors()
     {

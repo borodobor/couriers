@@ -48,14 +48,16 @@ elseif($success==0){
         $datedep=$('#trips-date_departure').val();
         $.post('/site/validtrip',{'courier':$cour,'region':$reg,'datedep':$datedep},
             function(data){
-                $result=JSON.parse(data);
-                if($result[1]==1){
-                    $('#arrive').html('<span style="color: red">У выбранного курьера на этот период назначена другая поездка. Выберите другого курьера или измените дату</span>');
-                    $('.btn-primary').hide();
-                }
-                else {
-                    $('#arrive').html('Дата прибытия из поездки: ' + $result[0]);
-                    $('.btn-primary').show();
+                if(data!=0) {
+                    $result = JSON.parse(data);
+                    if ($result[1] == 1) {
+                        $('#arrive').html('<span style="color: red">У выбранного курьера на этот период назначена другая поездка. Выберите другого курьера или измените дату</span>');
+                        $('.btn-primary').hide();
+                    }
+                    else {
+                        $('#arrive').html('Дата прибытия из поездки: ' + $result[0]);
+                        $('.btn-primary').show();
+                    }
                 }
             });
     }

@@ -1,5 +1,5 @@
 <?php
-namespace app\controllers;
+namespace app\controllers\actions;
 
 use app\models\Couriers;
 use app\models\Regions;
@@ -21,6 +21,9 @@ trait ActionMakeTrip{
             else{
                 $success=0;
             }
+        }
+        else {
+            $success=2;
         }
         $trip = new Trips();
         $couriers = Couriers::find()->all();

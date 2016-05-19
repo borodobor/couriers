@@ -1,5 +1,5 @@
 <?php
-namespace app\controllers;
+namespace app\controllers\actions;
 
 use app\models\Regions;
 use app\models\Trips;
@@ -14,6 +14,9 @@ trait ActionValidTrip{
         $cour=$post['courier'];
         // timestamp даты отправления
         $datedep=strtotime($post['datedep']);
+        if($datedep==0){
+            return 0;
+        }
         // сколько времени длится поездка в регион
         $period=Regions::find()->where(['id'=>$post['region']])->one();
         $period=$period->time;
