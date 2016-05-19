@@ -2,7 +2,7 @@
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 use \dosamigos\datepicker\DatePicker;
-
+$this->title = 'Назначить поездку';
 // переформируем присланные массивы регионов и курьеров для выпадающего списка
 $region=[];
 $courier=[];

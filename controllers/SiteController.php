@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\controllers\actions\ActionMakeChart;
+use app\controllers\actions\ActionIndex;
 use app\controllers\actions\ActionMakeTrip;
 use app\controllers\actions\ActionValidTrip;
 use Yii;
@@ -15,7 +15,7 @@ use app\models\ContactForm;
 class SiteController extends Controller
 {
     use ActionMakeTrip,
-        ActionMakeChart,
+        ActionIndex,
         ActionValidTrip;
     public function behaviors()
     {
@@ -52,11 +52,7 @@ class SiteController extends Controller
             ],
         ];
     }
-
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
+    
 
     public function actionLogin()
     {
