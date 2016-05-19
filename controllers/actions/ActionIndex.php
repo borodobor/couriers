@@ -6,8 +6,10 @@ use app\models\Regions;
 use app\models\Trips;
 use yii;
 
-trait ActionIndex{
-    public function actionIndex(){
+trait ActionIndex
+{
+    public function actionIndex()
+    {
         $post=Yii::$app->request->post();
 
         if($post==[]){
@@ -45,8 +47,8 @@ trait ActionIndex{
             $name=trim(str_replace($cids, $cnames,$name),0);
             $region=$v['region'];
             $region=trim(str_replace($ids, $names, $region),0);
-            $dated=date('Y, n, j',strtotime('-1 month',strtotime($v['date_departure'])));
-            $datear=date('Y, n, j',strtotime('-1 month',strtotime($v['date_arrival'])));
+            $dated=date('Y, n, j',strtotime($v['date_departure']));
+            $datear=date('Y, n, j',strtotime($v['date_arrival']));
             $result[]="['$name', '$region', new Date($dated), new Date($datear)],";
 
         }

@@ -6,14 +6,13 @@ use app\models\Regions;
 use app\models\Trips;
 use yii;
 
-trait ActionMakeTrip{
-    public function actionMaketrip(){
+trait ActionMakeTrip
+{
+    public function actionMaketrip()
+    {
         $post=Yii::$app->request->post();
 
         if($post!=[]) {
-//            echo '<pre>';
-//            print_r($post);
-//            die();
             $period=$post['period'];
             $trip=new Trips();
             $trip->load($post);

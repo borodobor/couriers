@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\controllers\actions\ActionGenerator;
 use app\controllers\actions\ActionIndex;
 use app\controllers\actions\ActionMakeTrip;
 use app\controllers\actions\ActionValidTrip;
@@ -16,6 +17,7 @@ class SiteController extends Controller
 {
     use ActionMakeTrip,
         ActionIndex,
+        ActionGenerator,
         ActionValidTrip;
     public function behaviors()
     {

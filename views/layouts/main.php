@@ -37,6 +37,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            ['label' => 'Заполнить базу поездками', 'url' => ['/site/generator']],
             ['label' => 'График поездок', 'url' => ['/site/index']],
             ['label' => 'Создать поездку', 'url' => ['/site/maketrip']],
         ],

@@ -8,8 +8,10 @@ use \DateInterval;
 use \DatePeriod;
 use \DateTime;
 
-trait ActionValidTrip{
-    public function actionValidtrip(){
+trait ActionValidTrip
+{
+    public function actionValidtrip()
+    {
         $post=Yii::$app->request->post();
         $cour=$post['courier'];
         // timestamp даты отправления
