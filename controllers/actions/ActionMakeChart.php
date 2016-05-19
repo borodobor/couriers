@@ -2,6 +2,8 @@
 namespace app\controllers\actions;
 
 use app\models\Couriers;
+use app\models\Regions;
+use app\models\Trips;
 use yii;
 
 trait ActionMakeChart{
@@ -16,19 +18,32 @@ trait ActionMakeChart{
             $dateend=date("Y-m-d", strtotime("+1 month",strtotime($date)));
         }
         $date=date('Y-m-d');
+        // получаем поездки за текущий период
         $trips=Couriers::find()->where(1)->joinWith('trips')->
                 where("`date_departure` between '$date' and '$dateend' or `date_arrival` between '$date' and '$dateend'")->
-                joinWith('region')->asArray()->all();
-        echo '<pre>';
-        print_r($trips);
-        die();
-//        $result=[]
-//        foreach ($trips as $k=>$v){
-//            $result[]=[$v['name'],];
-//        }
+                asArray()->all();
+        // получаем регионы
+        $regions=Regions::find()->asArray()->all();
+        // готовим массивы для замены id регионов на их названия
+        $ids=[];
+        $names=[];
+        foreach ($regions as $val){
+            $ids[]=$val['id'];
+            $names[]=$val['name'];
+        }
+        // формируем массив для отображения графика
+        $result=[];
+        foreach ($trips as $k=>$v){
+            $name=$v['name'];
+            foreach ($v['trips'] as $key=>$value){
+                $region=$value['region'];
+                $region=str_replace($ids, $names, $region);
+                $dated=date('Y, n, j',strtotime('-1 month',strtotime($value['date_departure'])));
+                $datear=date('Y, n, j',strtotime('-1 month',strtotime($value['date_arrival'])));
+                $result[]="['$name', '$region', new Date($dated), new Date($datear)],";
+            }
+        }
+
+        return $this->render('makechart',['data'=>$result]);
     }
 }
-//            [ 'President', 'John Adams', new Date(1797, 2, 4), new Date(1801, 2, 4) ],
-//            [ 'President', 'Thomas Jefferson', new Date(1801, 2, 4), new Date(1809, 2, 4) ],
-//            [ 'Vice President', 'John Adams', new Date(1789, 3, 21), new Date(1797, 2, 4)],
-//            [ 'Vice President', 'Thomas Jefferson', new Date(1797, 2, 4), new Date(1801, 2, 4)],

@@ -51,5 +51,8 @@ class Couriers extends \yii\db\ActiveRecord
         return $this->hasMany(Trips::className(), ['courier' => 'id']);
     }
     
-    pu
+    public function getRegions()
+    {
+        return $this->hasMany(Regions::className(),['id' => 'region'] )->via('trips');
+    }
 }

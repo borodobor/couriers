@@ -35,7 +35,7 @@ trait ActionValidTrip{
                 $res=1;
             }
         }
-        $data=json_encode([$datearr,$res]);
+        $data=json_encode([$datearr,$res,$period]);
         return $data;
     }
 }

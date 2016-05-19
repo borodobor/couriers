@@ -9,11 +9,16 @@ use yii;
 trait ActionMakeTrip{
     public function actionMaketrip(){
         $post=Yii::$app->request->post();
+
         if($post!=[]) {
+//            echo '<pre>';
+//            print_r($post);
+//            die();
+            $period=$post['period'];
             $trip=new Trips();
             $trip->load($post);
             $ts = strtotime($trip->date_departure);
-            $date_arr = date("Y-m-d", strtotime("+10 day", $ts));
+            $date_arr = date("Y-m-d", strtotime("+$period days", $ts));
             $trip->date_arrival = $date_arr;
             if ($trip->save()) {
                 $success=1;

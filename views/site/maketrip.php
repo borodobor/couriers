@@ -35,6 +35,7 @@ elseif($success==0){
         'format' => 'yyyy-mm-dd',
     ]
 ])->label('Дата отъезда');?>
+<input type="hidden" name="period" id="period" value="">
 <div id="arrive"></div>
 <div class="form-group">
     <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary','style'=>'float:right']) ?>
@@ -48,6 +49,7 @@ elseif($success==0){
         $datedep=$('#trips-date_departure').val();
         $.post('/site/validtrip',{'courier':$cour,'region':$reg,'datedep':$datedep},
             function(data){
+                console.log(data);
                 if(data!=0) {
                     $result = JSON.parse(data);
                     if ($result[1] == 1) {
@@ -56,6 +58,7 @@ elseif($success==0){
                     }
                     else {
                         $('#arrive').html('Дата прибытия из поездки: ' + $result[0]);
+                        $('#period').val($result[2]);
                         $('.btn-primary').show();
                     }
                 }
